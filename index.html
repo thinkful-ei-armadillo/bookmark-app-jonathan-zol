@@ -55,13 +55,24 @@
                 <option value="2">2</option>
                 <option value="1">1</option>
               </select>
-              <form id="js-edit-bookmark-form">
-                <!-- user clicks on element and renders input for editing -->
+              <!-- user clicks on element and renders input for editing -->
+              <div id="js-desicription-edit">
                 <span class="js-title">Title</span>
                 <span class="js-title">Rating</span>
                 <textarea>description text</textarea>
+                <a href="#">View Site</a>
+              </div>
+            </div>
+            <div class="js-edit">
+              <form id="js-edit-bookmark-form">
+                <input type="text" placeholder="Title">
+                <input type="text" placeholder="Rating">
+                <input type="text" placeholder="Description">
+                <a href="#">View Site</a>
               </form>
             </div>
+
+            <!-- static bookmark list -->
             <div id="bookmark-list">
                 <ul id="js-bookmark-list">
                     <li>
