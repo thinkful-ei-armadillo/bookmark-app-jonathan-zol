@@ -11,8 +11,25 @@ const api = (function(){
       .then(res => console.log(res));
   }
 
+  // add new bookmark
+ 
+    // POST http method
 
   
+  // edit bookmark
+
+    // get bookmark id
+
+    // PATCH http method
+
+
+  // delete bookmark
+
+    // get bookmark id
+
+    // DELETE http method
+
+
   return {
     getBookmarks
   };
