@@ -25,62 +25,35 @@
             </div>
             <div id="bookmark-list">
                 <ul id="js-bookmark-list">
+                    <!-- ======================bookmarks - start========================= -->
                     <li>
-                        <span>Article</span>
-                        <button class="js-delete">X</button>
+                        <div>
+                            <p class="js-toggle-info">Article</p>
+                            <button class="js-delete"><span class="icon">X</span></button>
+                        </div>
+                        <div class="js-description hidden">
+                            <textarea class="js-edit-description">description text</textarea>
+                            <a href="#" type="_blank">View Site</a> 
+                        </div>
+                        <div>
+                            <p><span class="js-rating">5</span>Stars</p>
+                        </div>
                     </li>
+                     <!-- ======================bookmarks - end========================= -->
                 </ul>
             </div>
             <!-- Add bookmark page -->
             <div class="js-options">
                 <form id="js-add-bookmark-form">
-                    <label for="bookmark-title">title: </label>
-                    <input type="text" name="title" id="bookmark-title">
-                    <label for="bookmark-rating">Rating: </label>
-                    <input type="number" name="rating" id="bookmark-rating">
-                    <label for="bookmark-url">Url: </label>
-                    <input type="url" name="url" id="bookmark-url">
-                    <label for="bookmark-description">Description: </label>
-                    <input type="text" name="description" id="bookmark-description">
+                    <h3 id="bookmark-title">Create a Bookmark:</h3>
+                    <input type="text" name="title" id="bookmark-title" placeholder="Title">
+                    <input type="number" name="rating" id="bookmark-rating" min="1" max="5" placeholder="Rating">
+                    <input type="url" name="url" id="bookmark-url" placeholder="http://article.com">
+                    <textarea type="text" name="description" id="bookmark-description" placeholder="Description..."></textarea>                    
                     <button type="submit">Submit</button>
                 </form>
             </div>
-            <!-- description/edit view -->
-            <div class="js-edit">
-              <button type="button" id="js-add-bookmark">Add Bookmark</button>
-              <select id="js-dropdown-rating">
-                <option value="5">5</option>
-                <option value="4">4</option>
-                <option value="3">3</option>
-                <option value="2">2</option>
-                <option value="1">1</option>
-              </select>
-              <!-- user clicks on element and renders input for editing -->
-              <div id="js-desicription-edit">
-                <span class="js-title">Title</span>
-                <span class="js-title">Rating</span>
-                <textarea>description text</textarea>
-                <a href="#">View Site</a>
-              </div>
-            </div>
-            <div class="js-edit">
-              <form id="js-edit-bookmark-form">
-                <input type="text" placeholder="Title">
-                <input type="text" placeholder="Rating">
-                <input type="text" placeholder="Description">
-                <a href="#">View Site</a>
-              </form>
-            </div>
-
-            <!-- static bookmark list -->
-            <div id="bookmark-list">
-                <ul id="js-bookmark-list">
-                    <li>
-                        <span>Article</span>
-                        <button class="js-delete">X</button>
-                    </li>
-                </ul>
-            </div>
+        
         </div>
     </main>
 
