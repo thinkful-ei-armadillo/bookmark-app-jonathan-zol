@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>My Bookmarks</title>
+</head>
+<body>
+    <main role="main">
+        <div class="container">
+            <header>
+                <h1 id="title">My Bookmarks</h1>
+            </header>
+            <!-- Landing page -->
+            <div id="js-options">
+                <button type="button" id="js-add-bookmark">Add Bookmark</button>
+                <select id="js-dropdown-rating">
+                    <option value="5">5</option>
+                    <option value="4">4</option>
+                    <option value="3">3</option>
+                    <option value="2">2</option>
+                    <option value="1">1</option>
+                </select>
+            </div>
+            <div id="bookmark-list">
+                <ul id="js-bookmark-list">
+                    <li>
+                        <span>Article</span>
+                        <button class="js-delete">X</button>
+                    </li>
+                </ul>
+            </div>
+            <!-- Add bookmark page -->
+            <div class="js-options">
+                <form id="js-add-bookmark-form">
+                    <label for="title"></label>
+                </form>
+            </div>
+            <div id="bookmark-list">
+                <ul id="js-bookmark-list">
+                    <li>
+                        <span>Article</span>
+                        <button class="js-delete">X</button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </main>
+
+
+    <script
+        src="https://code.jquery.com/jquery-3.3.1.min.js"
+        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous"></script>
+    <script src="api.js"></script>
+    <script src="store.js"></script>
+    <script src="bookmark.js"></script>
+    <script src="index.js"></script>
+</body>
+</html>
