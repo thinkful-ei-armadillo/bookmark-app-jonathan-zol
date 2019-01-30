@@ -20,12 +20,12 @@ const bookmarkList = (function(){
 
     return `
         <li class='js-bookmark' data-item-id="${bookmark.id}">
-          <div>
-              <p class="js-bookmark-description">${bookmark.title}</p>
-              <button type="button" class="js-delete"><i class="fas fa-trash-alt"></i></button>
+          <div class="bookmark-details" id="bookmark-title">
+              <span class="js-bookmark-description bookmark-description">${bookmark.title}</span>
+              <button type="button" class="js-delete delete-btn"><i class="fas fa-trash-alt"></i></button>
           </div> 
           ${STORE.bookmarkExpandId === bookmark.id ? bookmarkDesc : ''}
-          <div>
+          <div class="bookmark-details">
               <p>${rating.join('')}</p>
           </div>
         </li>`;
@@ -38,7 +38,15 @@ const bookmarkList = (function(){
       .map(bookmark => generateHtmlBookmarkElement(bookmark))
       .join('');
 
-    let formString = '<div id="js-form-select"><button type = "button" id ="js-add-bookmark" > Add Bookmark</button><select id="js-dropdown-rating" class="dropdown-rating"><option value="" disabled selected hidden>Mininum rating...</option><option value="5">5 Stars</option><option value="4">4 Stars</option><option value="3">3 Stars</option><option value="2">2 Stars</option><option value="1">1 Star</option></select></div>';
+    let formString = `<div id="js-form-select">
+                        <button type="button" class="add-bookmark-btn" id="js-add-bookmark">Add Bookmark</button>
+                        <select id="js-dropdown-rating" class="dropdown-rating">
+                          <option value="" disabled selected hidden>Mininum rating...</option>
+                          <option value="5">5 Stars</option><option value="4">4 Stars</option>
+                          <option value="3">3 Stars</option><option value="2">2 Stars</option>
+                          <option value="1">1 Star</option>
+                        </select>
+                      </div>`;
 
     if (STORE.isFormVisible){
       formString = `<form role="search" id="js-add-bookmark-form">
@@ -72,20 +80,17 @@ const bookmarkList = (function(){
     $('.js-container').html(bookmarkString);
   }
 
-  function setFormVisible(){
-    STORE.isFormVisible = !STORE.isFormVisible;
-  }
 
   function handleAddForm(){
     $('.js-container').on('click', '#js-add-bookmark', () => {
-      setFormVisible();
+      STORE.setFormVisible();
       render();
     });
   }
 
   function handleCloseButton(){
     $('.js-container').on('click', '.js-close-form', () => {
-      setFormVisible();
+      STORE.setFormVisible();
       render();
     });
   }
@@ -103,8 +108,9 @@ const bookmarkList = (function(){
   function handleAddBookmark(){
     $('.js-container').on('submit', '#js-add-bookmark-form', event => {
       event.preventDefault();
+      console.log('click')
       const bookmarkJson = $(event.currentTarget).serializeJson();
-      setFormVisible();
+      STORE.setFormVisible();
       api.createBookmark(bookmarkJson)
         .then(bookmark => {
           STORE.addBookmark(bookmark);
@@ -112,10 +118,6 @@ const bookmarkList = (function(){
         });
     });
   } 
-
-  function setDescriptionId(id){
-    STORE.bookmarkExpandId ? STORE.bookmarkExpandId = '' : STORE.bookmarkExpandId = id;
-  }
 
   function handleDescExpand(){
     $('.js-container').on('click', '.js-bookmark-description', event => {
@@ -157,7 +159,6 @@ const bookmarkList = (function(){
     handleDeleteBookmark();
     handleAddForm();
     handleDescExpand();
-    setDescriptionId();
     handleCloseButton();
   }
 

@@ -11,11 +11,6 @@ const STORE = (function(){
     }
   };
 
-
-  function setDescriptionId(id){
-    this.bookmarkExpandId ? this.bookmarkExpandId = '' : this.bookmarkExpandId = id;
-  }
-
   //========================= Edit description ======================================
   //find bookmark item by id
   //const findBookmarkById = function(id){
@@ -29,9 +24,17 @@ const STORE = (function(){
     this.searhTerm = rating;
   };
 
+  const setFormVisible = function() {
+    STORE.isFormVisible = !STORE.isFormVisible;
+  };
+
   // find and delete item by id
   const findAndDeleteBookmark = function(id){
     this.bookmarks = this.bookmarks.filter(bookmark => bookmark.id !== id);
+  };
+
+  const setDescriptionId = function(id) {
+    STORE.bookmarkExpandId ? STORE.bookmarkExpandId = '' : STORE.bookmarkExpandId = id;
   };
 
   return {
@@ -42,7 +45,8 @@ const STORE = (function(){
     addBookmark,
     setSearchTerm,
     findAndDeleteBookmark,
-    setDescriptionId
+    setDescriptionId,
+    setFormVisible,
   };
 }());
 

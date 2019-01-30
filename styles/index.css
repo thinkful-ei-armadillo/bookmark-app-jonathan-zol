@@ -2,16 +2,16 @@
     box-sizing: border-box;
 }
 
-.hidden {
-    display: none;
+body {
+    height: -webkit-fill-available;
+}
+
+main {
+    height: -webkit-fill-available;
 }
 
 select:invalid { 
     color: gray; 
-}
-
-.dropdown-rating, .dropdown-rating option {
-    width: 150px;
 }
 
 #bookmark-rating {
@@ -20,4 +20,49 @@ select:invalid {
 
 .checked {
     color: orange;
+}
+
+main {
+    display: flex;
+    justify-content: center;
+}
+
+.container {
+    width: 50vw;
+    text-align: center;
+}
+
+ul {
+    list-style: none;
+}
+
+li {
+    border: solid thin grey;
+    margin: 30px
+}
+
+.bookmark-details {
+    text-align: start;
+    margin-left: 1em;
+}
+
+#bookmark-title {
+    margin-top: 1em;
+}
+
+.bookmark-description {
+    display: inline-block;
+    cursor: pointer;
+}
+
+.add-bookmark-btn {
+    height: 3em;
+    width: 9em;
+    margin-right: 3em;
+}
+
+.delete-btn {
+    background-color: rgba(0, 0, 0, 0.0);
+    border: none;
+    cursor: pointer;
 }
