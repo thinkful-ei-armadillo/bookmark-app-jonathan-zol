@@ -35,7 +35,7 @@ const bookmarkList = (function(){
     if (STORE.isFormVisible){
 
     
-      formString = `<form id="js-add-bookmark-form">
+      formString = `<form role="search" id="js-add-bookmark-form">
                         <h3 id="bookmark-title">Create a Bookmark:</h3>
                         <input type="text" name="title" id="bookmark-title" placeholder="Title" required>
                         <input type="number" name="rating" id="bookmark-rating" min="1" max="5" placeholder="Rating" required>
@@ -45,7 +45,7 @@ const bookmarkList = (function(){
                     </form>`;
     }
 
-    return `<header>
+    return `<header role="banner">
                 <h1 id="title">My Bookmarks</h1>
             </header>
             <div id="js-form-container">${formString}</div>
@@ -95,12 +95,12 @@ const bookmarkList = (function(){
     });
   }
 
-  /* function handleDescExpand(){
-    $('.js-container').on('click', '.js-title', event=> {
-     const id = getBookmarkIdFromElement();
-     STORE.descId = id;
-    })
-  } */
+  function handleDescExpand(){
+    $('.js-container').on('click', '.js-toggle-info'(() =>  {
+      const id = getBookmarkIdFromElement();
+      STORE.descId = id;
+    }));
+  }
 
   // handle dropdown rating
   function handleFilterRating(){
@@ -117,8 +117,8 @@ const bookmarkList = (function(){
   }
   // handle delete bookmark item
   function handleDeleteBookmark(){
-    $('#js-bookmark-list').on('click', 'js-delete', event => {
-      console.log('click event triggered on delete button')
+    $('.js-container').on('click', '.js-delete', event => {
+      console.log('click event triggered on delete button');
       const id = getBookmarkIdFromElement(event.currentTarget);
       STORE.findAndDeleteBookmark(id);
       api.deleteBookmark(id);
