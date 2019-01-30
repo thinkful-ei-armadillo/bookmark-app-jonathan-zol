@@ -1,0 +1,19 @@
+* {
+    box-sizing: border-box;
+}
+
+.hidden {
+    display: none;
+}
+
+select:invalid { 
+    color: gray; 
+}
+
+.dropdown-rating, .dropdown-rating option {
+    width: 150px;
+}
+
+#bookmark-rating {
+    width: 80px;
+}

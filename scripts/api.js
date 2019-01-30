@@ -1,37 +1,56 @@
 'use strict';
 
+// eslint-disable-next-line no-unused-vars
 const api = (function(){
   
-  const BASE_URL = 'https://thinkful-list-api.herokuapp.com';
+  const BASE_URL = 'https://thinkful-list-api.herokuapp.com/jon-zol';
 
-  // get bookmark list items
-  function getBookmarks() {
-    fetch(`${BASE_URL}/jon-zol/bookmarks`)
-      .then(res => res.json())
-      .then(res => console.log(res));
+
+  function listApiFetch(...args) {
+    let error = false;
+    return fetch(...args)
+      .then(res => {
+        if (!res.ok) {
+          error = true;
+        }
+        return res.json();
+      })
+      .then(data => {
+        if (error) throw new Error(data.message);
+        return data;
+      })
+      .catch(err => alert(err.message));
   }
-
-  // add new bookmark
- 
-    // POST http method
-
   
-  // edit bookmark
+  const getBookmarks = function() {
+    const url = `${BASE_URL}/bookmarks`;
+    return listApiFetch(url);
+  };
 
-    // get bookmark id
+  const createBookmark = function(bookmark){
+    const url = `${BASE_URL}/bookmarks`;
+    console.log(bookmark);
+    return listApiFetch(url, {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify(bookmark)
+    });
+  };
 
-    // PATCH http method
+  // PATCH http method
 
-
-  // delete bookmark
-
-    // get bookmark id
-
-    // DELETE http method
-
+  // DELETE http method
+  const deleteBookmark = function(id){
+    const url = `${BASE_URL}/bookmarks/${id}`;
+    listApiFetch(url, {
+      method: 'DELETE',
+    });
+  };
 
   return {
-    getBookmarks
+    getBookmarks,
+    createBookmark,
+    deleteBookmark
   };
 
 }());

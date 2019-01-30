@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>My Bookmarks</title>
+    <link rel="stylesheet" href="styles/index.css">
 </head>
 <body>
     <main role="main">
@@ -13,38 +14,19 @@
                 <h1 id="title">My Bookmarks</h1>
             </header>
             <!-- Landing page -->
-            <div id="js-options">
-                <button type="button" id="js-add-bookmark">Add Bookmark</button>
-                <select id="js-dropdown-rating">
-                    <option value="5">5</option>
-                    <option value="4">4</option>
-                    <option value="3">3</option>
-                    <option value="2">2</option>
-                    <option value="1">1</option>
-                </select>
-            </div>
-            <div id="bookmark-list">
-                <ul id="js-bookmark-list">
-                    <!-- ======================bookmarks - start========================= -->
-                    <li>
-                        <div>
-                            <p class="js-toggle-info">Article</p>
-                            <button class="js-delete"><span class="icon">X</span></button>
-                        </div>
-                        <div class="js-description hidden">
-                            <textarea class="js-edit-description">description text</textarea>
-                            <a href="#" type="_blank">View Site</a> 
-                        </div>
-                        <div>
-                            <p><span class="js-rating">5</span>Stars</p>
-                        </div>
-                    </li>
-                     <!-- ======================bookmarks - end========================= -->
-                </ul>
-            </div>
-            <!-- Add bookmark page -->
-            <div class="js-options">
-                <form id="js-add-bookmark-form">
+            <div id="js-form-container">
+                <div id="js-form-select">
+                    <button type="button" id="js-add-bookmark">Add Bookmark</button>
+                    <select id="js-dropdown-rating" class="dropdown-rating">
+                        <option value="" disabled selected hidden>Mininum rating...</option>
+                        <option value="5">5 Stars</option>
+                        <option value="4">4 Stars</option>
+                        <option value="3">3 Stars</option>
+                        <option value="2">2 Stars</option>
+                        <option value="1">1 Star</option>
+                    </select>
+                </div>
+                <form id="js-add-bookmark-form" class="hidden">
                     <h3 id="bookmark-title">Create a Bookmark:</h3>
                     <input type="text" name="title" id="bookmark-title" placeholder="Title">
                     <input type="number" name="rating" id="bookmark-rating" min="1" max="5" placeholder="Rating">
@@ -53,7 +35,10 @@
                     <button type="submit">Submit</button>
                 </form>
             </div>
-        
+            <div id="bookmark-list">
+                <ul id="js-bookmark-list">
+                </ul>
+            </div>
         </div>
     </main>
 
@@ -62,9 +47,9 @@
         src="https://code.jquery.com/jquery-3.3.1.min.js"
         integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
         crossorigin="anonymous"></script>
-    <script src="store.js"></script>
-    <script src="bookmark.js"></script>
-    <script src="api.js"></script>
-    <script src="index.js"></script>
+    <script src="scripts/store.js"></script>
+    <script src="scripts/api.js"></script>
+    <script src="scripts/bookmarks.js"></script>
+    <script src="scripts/index.js"></script>
 </body>
 </html>
