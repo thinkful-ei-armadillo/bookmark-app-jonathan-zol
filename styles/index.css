@@ -2,8 +2,9 @@
     box-sizing: border-box;
 }
 
-body {
+body, html {
     height: -webkit-fill-available;
+    
 }
 
 main {
@@ -31,14 +32,28 @@ main {
     width: 50vw;
     text-align: center;
 }
+h1 {
+    font-family: 'Anton', sans-serif;
+}
 
 ul {
     list-style: none;
+    padding: 0;
 }
 
 li {
     border: solid thin grey;
     margin: 30px
+}
+
+form button {
+    display: inline-block
+}
+
+textarea {
+    height: 120px;
+    width: 450px;
+    margin-top: 10px;
 }
 
 .bookmark-details {
@@ -59,10 +74,49 @@ li {
     height: 3em;
     width: 9em;
     margin-right: 3em;
+    font-family: 'Anton', sans-serif;
 }
 
 .delete-btn {
     background-color: rgba(0, 0, 0, 0.0);
     border: none;
     cursor: pointer;
+}
+
+a {
+    display: flex;
+    justify-items: left;
+    margin-left: 1.1em;
+}
+
+@media only screen and (max-width: 320px) {
+    .add-bookmark-btn {
+        margin-right: 0;
+    }
+
+    #bookmark-rating {
+        width: auto;
+    }
+
+}
+
+
+@media only screen and (max-width: 600px) {
+    main, textarea {
+        width: auto;
+        overflow: auto;
+
+    }
+
+    .container {
+        width: 80vw;
+    }
+
+}
+
+@media only screen and (max-height: 1000px) {
+  body, html {
+    height: auto;
+    overflow: auto;
+  }
 }

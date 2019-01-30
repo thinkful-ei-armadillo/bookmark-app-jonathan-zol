@@ -51,12 +51,15 @@ const bookmarkList = (function(){
     if (STORE.isFormVisible){
       formString = `<form role="search" id="js-add-bookmark-form">
                         <h3 id="bookmark-title">Create a Bookmark:</h3>
+                        <div>
                         <input type="text" name="title" id="bookmark-title" placeholder="Title" required>
                         <input type="number" name="rating" id="bookmark-rating" min="1" max="5" placeholder="Rating" required>
-                        <input type="url" name="url" id="bookmark-url" placeholder="http://article.com" required>
-                        <textarea type="text" name="desc" id="bookmark-description" placeholder="Description..." required></textarea>                   
-                        <button type="submit">Submit</button>
-                        <button type="button" class="js-close-form">Close</button>
+                        <input type="url" name="url" id="bookmark-url" class="url" placeholder="http://article.com" required>
+                        </div>
+                        <textarea type="text" name="desc" id="bookmark-description" placeholder="Description..." required></textarea>            <div>      
+                          <button type="submit">Submit</button>
+                          <button type="button" class="js-close-form">Close</button>
+                        </div>
                     </form>`;
     }
 
