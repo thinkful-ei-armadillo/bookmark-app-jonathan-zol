@@ -12,12 +12,11 @@ const bookmarkList = (function(){
           <div>
               <p class="js-toggle-info">${bookmark.title}</p>
               <button type="button" class="js-delete"><span class="icon">X</span></button>
+          </div> 
+          <div class="js-description">
+               <p class="js-edit-description">${bookmark.desc}</p>
+               <a href="${bookmark.url}" type="_blank">View Site</a> 
           </div>
-          // {bookmark.id === descId ? 
-          // '<div class="js-description">
-          //     <p class="js-edit-description">${bookmark.description}</p>
-          //     <a href="${bookmark.url}" type="_blank">View Site</a> 
-          // </div>' : ''}
           <div>
               <p><span class="js-rating">${bookmark.rating}</span> Stars</p>
           </div>
@@ -31,26 +30,17 @@ const bookmarkList = (function(){
       .map(bookmark => generateHtmlBookmarkElement(bookmark))
       .join('');
 
-    const formSting = '';
-    if (isFormVisible){
-      formSting = `<div id="js-form-select">
-                      <button type="button" id="js-add-bookmark">Add Bookmark</button>
-                      <select id="js-dropdown-rating" class="dropdown-rating">
-                          <option value="" disabled selected hidden>Mininum rating...</option>
-                          <option value="5">5 Stars</option>
-                          <option value="4">4 Stars</option>
-                          <option value="3">3 Stars</option>
-                          <option value="2">2 Stars</option>
-                          <option value="1">1 Star</option>
-                      </select>
-                  </div>`;
-    } else {
-      formString = `<form id="js-add-bookmark-form" class="hidden">
+    let formString = '<div id="js-form-select"><button type = "button" id ="js-add-bookmark" > Add Bookmark</button><select id="js-dropdown-rating" class="dropdown-rating"><option value="" disabled selected hidden>Mininum rating...</option><option value="5">5 Stars</option><option value="4">4 Stars</option><option value="3">3 Stars</option><option value="2">2 Stars</option><option value="1">1 Star</option></select></div>';
+
+    if (STORE.isFormVisible){
+
+    
+      formString = `<form id="js-add-bookmark-form">
                         <h3 id="bookmark-title">Create a Bookmark:</h3>
-                        <input type="text" name="title" id="bookmark-title" placeholder="Title">
-                        <input type="number" name="rating" id="bookmark-rating" min="1" max="5" placeholder="Rating">
-                        <input type="url" name="url" id="bookmark-url" placeholder="http://article.com">
-                        <textarea type="text" name="description" id="bookmark-description" placeholder="Description..."></textarea>                   
+                        <input type="text" name="title" id="bookmark-title" placeholder="Title" required>
+                        <input type="number" name="rating" id="bookmark-rating" min="1" max="5" placeholder="Rating" required>
+                        <input type="url" name="url" id="bookmark-url" placeholder="http://article.com" required>
+                        <textarea type="text" name="desc" id="bookmark-description" placeholder="Description..." required></textarea>                   
                         <button type="submit">Submit</button>
                     </form>`;
     }
@@ -58,26 +48,27 @@ const bookmarkList = (function(){
     return `<header>
                 <h1 id="title">My Bookmarks</h1>
             </header>
-            <div id="js-form-container">${formSting}</div>
+            <div id="js-form-container">${formString}</div>
             <ul id="js-bookmark-list">${bookmarkString}</ul>`;
   }
 
   // generate details bookmark view
   function render(){
-    const bookmarks = [...STORE.bookmarks];
+    let bookmarks = [...STORE.bookmarks];
     // filter bookmark list
     if (STORE.searhTerm){
       bookmarks = STORE.bookmarks
         .filter(bookmark => parseInt(bookmark.rating) >= parseInt(STORE.searhTerm));
     }
-    const bookmarkSting = generateHtmlString(bookmarks);
+    const bookmarkString = generateHtmlString(bookmarks);
     // render html elements
-    $('#js-bookmark-list').html(bookmarkSting);
+    $('.js-container').html(bookmarkString);
   }
 
   function handleAddForm(){
-    $('#js-add-bookmark').click(event => {
-  
+    $('.js-container').on('click', '#js-add-bookmark', event => {
+      STORE.isFormVisible = true;
+      render();
     });
   }
 
@@ -92,10 +83,10 @@ const bookmarkList = (function(){
 
   // handle add bookmark item
   function handleAddBookmark(){
-    $('#js-add-bookmark-form').submit(event => {
+    $('.js-container').on('submit', '#js-add-bookmark-form', event => {
       event.preventDefault();
       const bookmarkJson = $(event.currentTarget).serializeJson();
-   
+      STORE.isFormVisible = false;
       api.createBookmark(bookmarkJson)
         .then(bookmark => {
           STORE.addBookmark(bookmark);
@@ -104,12 +95,12 @@ const bookmarkList = (function(){
     });
   }
 
-  function handleDescExpand(){
+  /* function handleDescExpand(){
     $('.js-container').on('click', '.js-title', event=> {
      const id = getBookmarkIdFromElement();
      STORE.descId = id;
     })
-  }
+  } */
 
   // handle dropdown rating
   function handleFilterRating(){
@@ -126,7 +117,6 @@ const bookmarkList = (function(){
   }
   // handle delete bookmark item
   function handleDeleteBookmark(){
-    debugger;
     $('#js-bookmark-list').on('click', 'js-delete', event => {
       console.log('click event triggered on delete button')
       const id = getBookmarkIdFromElement(event.currentTarget);

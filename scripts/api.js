@@ -33,7 +33,7 @@ const api = (function(){
     return listApiFetch(url, {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify(bookmark)
+      body: bookmark
     });
   };
 

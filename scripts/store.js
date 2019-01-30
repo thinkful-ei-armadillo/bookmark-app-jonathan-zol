@@ -32,6 +32,7 @@ const STORE = (function(){
   return {
     bookmarks: [],
     searhTerm: '',
+    isFormVisible: false,
     addBookmark,
     setSearchTerm,
     findAndDeleteBookmark
