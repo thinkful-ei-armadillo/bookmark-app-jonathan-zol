@@ -11,6 +11,11 @@ const STORE = (function(){
     }
   };
 
+
+  function setDescriptionId(id){
+    this.bookmarkExpandId ? this.bookmarkExpandId = '' : this.bookmarkExpandId = id;
+  }
+
   //========================= Edit description ======================================
   //find bookmark item by id
   //const findBookmarkById = function(id){
@@ -33,9 +38,11 @@ const STORE = (function(){
     bookmarks: [],
     searhTerm: '',
     isFormVisible: false,
+    bookmarkExpandId: '',
     addBookmark,
     setSearchTerm,
-    findAndDeleteBookmark
+    findAndDeleteBookmark,
+    setDescriptionId
   };
 }());
 

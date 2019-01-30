@@ -17,3 +17,7 @@ select:invalid {
 #bookmark-rating {
     width: 80px;
 }
+
+.checked {
+    color: orange;
+}
