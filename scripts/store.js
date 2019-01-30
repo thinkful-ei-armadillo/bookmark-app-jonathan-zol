@@ -1,6 +1,5 @@
 'use strict';
 /*global bookmarkList */
-
 // eslint-disable-next-line no-unused-vars
 const STORE = (function(){
   // add item to store
