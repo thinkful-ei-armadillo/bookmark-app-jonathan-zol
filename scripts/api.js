@@ -8,18 +8,12 @@ const api = (function(){
 
 
   function listApiFetch(...args) {
-    let error = false;
     return fetch(...args)
       .then(res => {
         if (!res.ok) {
-          error = true;
+          throw new Error(res.message);
         }
         return res.json();
-      })
-      .then(data => {
-        if (error) throw new Error(data.message);
-        
-        return data;
       })
       .catch(err => {
         $('#js-error-message').text(`Opps, something went wrong: ${err.message}`);
