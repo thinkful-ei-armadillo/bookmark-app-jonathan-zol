@@ -21,7 +21,7 @@ const STORE = (function(){
 
   // set search term
   const setSearchTerm = function(rating){
-    this.searhTerm = rating;
+    this.searhTerm = parseInt(rating);
   };
 
   const setFormVisible = function() {
