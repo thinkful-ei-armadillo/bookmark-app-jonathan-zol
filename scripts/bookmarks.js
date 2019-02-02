@@ -15,7 +15,7 @@ const bookmarkList = (function(){
     const rating = [];
     for (let i = 0; i < 5; i++){
       rating
-        .push(i < parseInt(bookmark.rating)?'<span class="fa fa-star checked"></span>':'<span class="fa fa-star"></span>');
+        .push(i < parseInt(bookmark.rating) ? '<span class="fa fa-star checked"></span>':'<span class="fa fa-star"></span>');
     }
 
     return `
@@ -111,7 +111,7 @@ const bookmarkList = (function(){
   function handleAddBookmark(){
     $('.js-container').on('submit', '#js-add-bookmark-form', event => {
       event.preventDefault();
-      console.log('click')
+      console.log('click');
       const bookmarkJson = $(event.currentTarget).serializeJson();
       STORE.setFormVisible();
       api.createBookmark(bookmarkJson)

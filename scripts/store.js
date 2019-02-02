@@ -29,7 +29,7 @@ const STORE = (function(){
   };
 
   // find and delete item by id
-  const findAndDeleteBookmark = function(id){
+  const findAndDeleteBookmark = function(id) {
     this.bookmarks = this.bookmarks.filter(bookmark => bookmark.id !== id);
   };
 
@@ -41,6 +41,7 @@ const STORE = (function(){
     bookmarks: [],
     searhTerm: '',
     isFormVisible: false,
+    isEditing: false,
     bookmarkExpandId: '',
     addBookmark,
     setSearchTerm,

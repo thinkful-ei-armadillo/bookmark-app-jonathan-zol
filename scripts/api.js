@@ -1,6 +1,7 @@
 'use strict';
 
 // eslint-disable-next-line no-unused-vars
+/* global $ */
 const api = (function(){
   
   const BASE_URL = 'https://thinkful-list-api.herokuapp.com/jon-zol';
@@ -17,9 +18,12 @@ const api = (function(){
       })
       .then(data => {
         if (error) throw new Error(data.message);
+        
         return data;
       })
-      .catch(err => alert(err.message));
+      .catch(err => {
+        $('#js-error-message').text(`Opps, something went wrong: ${err.message}`);
+      });
   }
   
   const getBookmarks = function() {
